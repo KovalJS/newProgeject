@@ -12,7 +12,6 @@ let money, //доход за месяц
 let start = function() {
      do{
          money = prompt('Ваш месячный доход?');
-         console.log('money: ', money);
      }
      while(isNaN(money) || money === '' || money === null);
     
@@ -35,7 +34,8 @@ let questionСosts1,
 
 //cумма всех расходов за месяц
 let getExpensesMonth = function() {
-    let sum = 0;
+    let sum = 0,
+        questionSum;
 
     for (let i = 0; i < 2; i++) {
         if (i == 0) {
@@ -45,10 +45,11 @@ let getExpensesMonth = function() {
             questionСosts2 = prompt('Какие обязательные ежемесячные расходы у вас есть?');
         }
 
-        let questionSum =  prompt('Во сколько это обойдется?');
-        while(isNaN(questionSum) || questionSum === '' || questionSum === null) {
+        
+        do {
             questionSum =  prompt('Во сколько это обойдется?');
-        }  
+        } 
+        while(isNaN(questionSum) || questionSum === '' || questionSum === null); 
            
         sum += +questionSum;
         
@@ -60,8 +61,9 @@ let expensesAmount = getExpensesMonth();
 console.log('Сумма расходов: ', expensesAmount);
 
 //Накопления за месяц
+let accumulatedMonth;
 function getAccumulatedMonth() {
-    let accumulatedMonth = money - expensesAmount;
+    accumulatedMonth = money - expensesAmount;
     return accumulatedMonth;
 }
 
@@ -90,17 +92,13 @@ let budgetDay = Math.floor(getAccumulatedMonth() / 30);
 let getStatusIncome = function() {
     if (budgetDay > 800) {
         return ('Высокий уровень дохода');
-    } else if ( budgetDay > 300) {
-        if (budgetDay <= 800){
+    } else if (budgetDay > 300 ) {
         return ('Средний уровень дохода');
-        }
     }
-    else if (budgetDay >= 0) {
-        if (budgetDay <= 300) {
+    else if (budgetDay >= 0 ) {
         return ('Низкий уровень дохода');
-        }
     }
-    else if ( budgetDay < 0) {
+    else if (budgetDay < 0 ) {
         return ('Что то пошло не так');
     }
 };
