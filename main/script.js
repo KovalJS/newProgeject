@@ -21,7 +21,7 @@ let income = 'такси', //строка с дополнительными до
 
 
 
-console.log('addExpenses: ', addExpenses.split(','));
+console.log('Возможные расходы addExpenses: ', addExpenses.split(','));
 
 let showTypeof = function(data) {
     console.log(data, typeof data);
@@ -94,10 +94,10 @@ let budgetDay = Math.floor(getAccumulatedMonth() / 30);
 let getStatusIncome = function() {
     if (budgetDay > 800) {
         return ('Высокий уровень дохода');
-    } else if (budgetDay > 300 ) {
+    } else if (budgetDay >= 300 && budgetDay <= 800) {
         return ('Средний уровень дохода');
     }
-    else if (budgetDay >= 0 ) {
+    else if (budgetDay >= 0 && budgetDay < 300) {
         return ('Низкий уровень дохода');
     }
     else if (budgetDay < 0 ) {
