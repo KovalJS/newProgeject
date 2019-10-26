@@ -5,9 +5,9 @@
 let money, //доход за месяц 
     start = function() {
     do{
-        money = prompt('Ваш месячный доход?');
+        money = +prompt('Ваш месячный доход?');
     }
-    while(isNaN(money) || money === '' || money === null);
+    while(isNaN(money) || money === '' || money === null || money === 0);
    
     };
 
@@ -27,7 +27,7 @@ let showTypeof = function(data) {
     console.log(data, typeof data);
 };
 
-showTypeof(+money);
+showTypeof(money);
 showTypeof(income);
 showTypeof(deposit);
 
