@@ -3,21 +3,23 @@
 'use strict';
 
 let money, //доход за месяц 
-    income = 'такси', //строка с дополнительными доходом
+    start = function() {
+    do{
+        money = prompt('Ваш месячный доход?');
+    }
+    while(isNaN(money) || money === '' || money === null);
+   
+    };
+
+    start();
+
+let income = 'такси', //строка с дополнительными доходом
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'), //строка с перечислением дополнительных расходов
     deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 20000, //Какую сумму хотите накопить
     period = 5; 
 
-let start = function() {
-     do{
-         money = prompt('Ваш месячный доход?');
-     }
-     while(isNaN(money) || money === '' || money === null);
-    
-}
 
-start();
 
 console.log('addExpenses: ', addExpenses.split(','));
 
@@ -25,7 +27,7 @@ let showTypeof = function(data) {
     console.log(data, typeof data);
 };
 
-showTypeof(money);
+showTypeof(+money);
 showTypeof(income);
 showTypeof(deposit);
 
@@ -55,7 +57,7 @@ let getExpensesMonth = function() {
         
     }
     return sum;
-} 
+}; 
 
 let expensesAmount = getExpensesMonth();
 console.log('Сумма расходов: ', expensesAmount);
@@ -83,7 +85,7 @@ let getTargetMonthCheck = function(data) {
 console.log(getTargetMonthCheck(getTargetMonth()));
 
 if (getAccumulatedMonth() > 0) {
-console.log('Накопления за период: ', getAccumulatedMonth() * getTargetMonth() );
+console.log('Накопления за период: ', getAccumulatedMonth());
 }
 
 // дневной бюджет,учитывая бюджет на месяц

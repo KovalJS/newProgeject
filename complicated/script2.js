@@ -3,11 +3,11 @@
 let arr = ['10', '100', '20', '200', '30', '300', '40'];
 
 //console.log(+arr[2].substr(0,1));
-for (let i = 0; i < arr.length; i++) {
-    if (+arr[i].substr(0,1) === 2 || +arr[i].substr(0,1) === 4){
-        console.log(+arr[i]);
+arr.forEach(function(item) {
+    if (+item.substr(0,1) === 2 || +item.substr(0,1) === 4){
+        console.log(+item);
     }
-}
+});
 
 for (var i = 2; i <=100; i++){
     
