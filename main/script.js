@@ -1,22 +1,19 @@
 //6 урок, основное задание
 
 'use strict';
+               
+let start = function() {
+    let money;
+    do{
+        money = +prompt('Ваш месячный доход?');  //доход за месяц
+    }
+    while(isNaN(money) || money === '' || money === null || money === 0);
 
-let money,                 //доход за месяц
-    questionСosts1,        //обязательные ежемесячные расходы
-    questionСosts2,
-    start = function() {
-        do{
-            money = +prompt('Ваш месячный доход?');
-        }
-        while(isNaN(money) || money === '' || money === null || money === 0);
-   
-    };
-
-start();
+    return money;  
+};
 
 let appData = {
-    budget : money,
+    budget : start(),
     budgetDay : 0,        // дневной бюджет,учитывая бюджет на месяц
     budgetMonth : 0,      // бюджет на месяц   
     expensesMonth : 0,    //сумма всех обязательных расходов
@@ -32,7 +29,9 @@ let appData = {
             appData.addExpenses = addExpenses.toLowerCase().split(',');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
-        let questionSum;    
+        let questionSum,
+            questionСosts1,        //обязательные ежемесячные расходы
+            questionСosts2;    
         for (let i = 0; i < 2; i++) {
             
             if (i == 0) {
@@ -103,10 +102,13 @@ console.log(appData.getStatusIncome());
 
 console.log('Наша программа включает в себя данные:');
 for (let keyName in appData) {
-    console.log(appData[keyName]);
-    for(var keyName2 in appData[keyName]) {
-        if(typeof(appData[keyName][keyName2]) === 'object') {
-            console.log(obj[keyName][keyName2]);
+    if(typeof(appData[keyName]) === 'object') {
+        for(let keyName2 in appData[keyName]) {          
+            console.log(keyName2 + ':' + appData[keyName][keyName2]);
         }
+    }
+
+    if(typeof(appData[keyName]) !== 'object') {
+        console.log(keyName + ':' + appData[keyName]); 
     }
 }    

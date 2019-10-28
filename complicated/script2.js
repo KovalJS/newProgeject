@@ -2,11 +2,11 @@
 
 'use strict';
 
-let week = ['воскресение', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+let week = ['воскресение', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+    now = new Date(),
+    weekDay = now.getDay();
 
 week.forEach(function(item,i) {
-    let now = new Date(),
-        weekDay = now.getDay();
 
     if (item === 'суббота' || item === 'воскресение') {
         item = item.italics(); 
