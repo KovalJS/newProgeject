@@ -5,12 +5,11 @@
 let money,                 //доход за месяц
     questionСosts1,        //обязательные ежемесячные расходы
     questionСosts2,
-    accumulatedMonth,      //Накопления за месяц
     start = function() {
         do{
-            money = prompt('Ваш месячный доход?');
+            money = +prompt('Ваш месячный доход?');
         }
-        while(isNaN(money) || money === '' || money === null);
+        while(isNaN(money) || money === '' || money === null || money === 0);
    
     };
 
@@ -19,7 +18,7 @@ start();
 let appData = {
     budget : money,
     budgetDay : 0,        // дневной бюджет,учитывая бюджет на месяц
-    budgetMonth : 0,
+    budgetMonth : 0,      // бюджет на месяц   
     expensesMonth : 0,    //сумма всех обязательных расходов
     income : {},          //строка с дополнительными доходом
     addIncome : [],
@@ -57,12 +56,11 @@ let appData = {
        }
     },
     getBudget : function() {               
-        accumulatedMonth = appData.budget - appData.expensesMonth; //Накопления за месяц
-        appData.budgetDay = Math.floor(accumulatedMonth / 30);
-        appData.budgetMonth;
+        appData.budgetMonth = appData.budget - appData.expensesMonth; //Накопления за месяц,бюджет на месяц
+        appData.budgetDay = Math.floor(appData.budgetMonth / 30);
     },
     getTargetMonth : function() {                   
-        return Math.floor(appData.mission / accumulatedMonth);     //за какой период будет достигнута цель
+        return Math.floor(appData.mission / appData.budgetMonth);     //за какой период будет достигнута цель
     },
     getStatusIncome : function() {                                 //уровень дохода
         if (appData.budgetDay > 800) {
@@ -89,7 +87,7 @@ console.log('дополнительные расходы appData.expenses: ', ap
 let expensesAmount = appData.expensesMonth;
 console.log('Сумма расходов: ', expensesAmount);
 
-console.log('Накопления за месяц appData.getBudget(): ', accumulatedMonth);
+console.log('Накопления за месяц,бюджет на месяц appData.getBudget(): ', appData.budgetMonth);
 
 let getTargetMonthCheck = function(data) {
     if (data < 0){
