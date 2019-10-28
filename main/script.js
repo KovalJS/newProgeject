@@ -2,19 +2,18 @@
 
 'use strict';
 
-let money,                 //доход за месяц
-    start = function() {
-        do{
-            money = +prompt('Ваш месячный доход?');
-        }
-        while(isNaN(money) || money === '' || money === null || money === 0);
-   
-    };
+let start = function() {
+    let money;
+    do{
+        money = +prompt('Ваш месячный доход?');  //доход за месяц
+    }
+    while(isNaN(money) || money === '' || money === null || money === 0);
 
-start();
+    return money;
+};
 
 let appData = {
-    budget : money,
+    budget : start(),
     budgetDay : 0,        // дневной бюджет,учитывая бюджет на месяц
     budgetMonth : 0,      // бюджет на месяц   
     expensesMonth : 0,    //сумма всех обязательных расходов
@@ -35,7 +34,7 @@ let appData = {
             do {
                 itemIncome = prompt('Какой у Вас дополнительный заработок?');
             } 
-            while (itemIncome === '' || itemIncome === null || !isNaN(itemIncome));
+            while (itemIncome === '' || itemIncome === null || !isNaN(parseFloat(itemIncome)) && isFinite(itemIncome));
 
             do {
                 cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?');
@@ -45,7 +44,12 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через  запятую'); //строка с перечислением дополнительных расходов
+        let addExpenses;
+            do {
+            addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через  запятую'); //строка с перечислением дополнительных расходов
+            }
+            while (addExpenses === '' || addExpenses === null || !isNaN(parseFloat(addExpenses)) && isFinite(addExpenses));
+            
             appData.addExpenses = addExpenses.toLowerCase().split(',');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
             
@@ -131,13 +135,16 @@ console.log(appData.getStatusIncome());
 
 console.log('Наша программа включает в себя данные:');
 for (let keyName in appData) {
-    console.log(appData[keyName]);
-    for(var keyName2 in appData[keyName]) {
-        if(typeof(appData[keyName][keyName2]) === 'object') {
-            console.log(obj[keyName][keyName2]);
+    if(typeof(appData[keyName]) === 'object') {
+        for(let keyName2 in appData[keyName]) {          
+            console.log(keyName2 + ':' + appData[keyName][keyName2]);
         }
     }
-}
+
+    if(typeof(appData[keyName]) !== 'object') {
+        console.log(keyName + ':' + appData[keyName]); 
+    }
+} 
 
 appData.addExpenses.forEach(function(item, i, arr) {
     arr[i] = item[0].toUpperCase() + item.slice(1).toLowerCase(); 
