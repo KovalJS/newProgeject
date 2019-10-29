@@ -147,6 +147,6 @@ for (let keyName in appData) {
 } 
 
 appData.addExpenses.forEach(function(item, i, arr) {
-    arr[i] = item[0].toUpperCase() + item.slice(1).toLowerCase(); 
+    arr[i] = item.trim()[0].toUpperCase() + item.trim().slice(1).toLowerCase(); 
 });
 console.log(appData.addExpenses.join(', '));
