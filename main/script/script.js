@@ -187,11 +187,11 @@ let appData = {
     battonPlus2.addEventListener('click', appData.addExpensesBlock);
     battonPlus1.addEventListener('click', appData.addIncomeBlock);
 
-    periodSelect.addEventListener('change', function(event) {
+    periodSelect.addEventListener('input', function(event) {
         periodAmount.textContent = periodSelect.value;
     });
 
-    periodSelect.addEventListener('change', function(event) {
+    periodSelect.addEventListener('input', function(event) {
         incomePeriodValue.value =  appData.budgetMonth * periodSelect.value;
     });
     
