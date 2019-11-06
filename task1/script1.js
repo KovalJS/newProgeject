@@ -22,7 +22,7 @@ DomElement.prototype.newElement = function() {
         document.querySelector('body').appendChild(elment1);
     } else if (this.selector.slice(0,1) ===  '#') {
         let elment2 = document.createElement('p');
-        elment2.classList.add('"' + this.selector.slice(1) + '"');
+        elment2.setAttribute('id', this.selector);
         elment2.textContent = 'elment2';
         elment2.style.cssText = 'height :' + this.height + ';' +
                                 'width :' + this.width + ';' + 
