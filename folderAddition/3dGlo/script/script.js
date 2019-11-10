@@ -27,7 +27,8 @@ window.addEventListener('DOMContentLoaded', function() {
                 seconds = Math.floor(timeRemaining % 60),
                 minutes = Math.floor((timeRemaining / 60) % 60),
                 hours = Math.floor(timeRemaining / 60 / 60);
-                return {timeRemaining, hours, minutes, seconds};    
+
+            return {timeRemaining, hours, minutes, seconds};      
         };    
 
         const upDateClock = () => {
@@ -35,9 +36,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
             if (timer.timeRemaining <= 0) {
                 clearInterval(idInterval);
+                let deadline = new Date(Date.parse(new Date()) + 86400000);
+                countTimer(deadline);
                 return;
             }
-
+            
             timerHours.textContent = timer.hours < 10 ? '0' + timer.hours : timer.hours;
             timerMinutes.textContent = timer.minutes < 10 ? '0' + timer.minutes : timer.minutes;
             timerSeconds.textContent = timer.seconds < 10 ? '0' + timer.seconds : timer.seconds;
