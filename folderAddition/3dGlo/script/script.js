@@ -126,10 +126,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
         popupBtn.forEach((item) => {
             item.addEventListener('click', () => {
-                setTimeout(animatePopUp);
+                const idAnimate = setTimeout(animatePopUp);
                 
                 if (widthWindow <= 768) {
-                    clearInterval(animatePopUp);
+                    clearInterval(idAnimate);
                 }
                 popup.style.display = 'block';
             });
