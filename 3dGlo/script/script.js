@@ -37,13 +37,13 @@ window.addEventListener('DOMContentLoaded', function() {
                 clearInterval(idInterval);
                 return;
             }
-
+            console.log('Проверка');
             timerHours.textContent = timer.hours < 10 ? '0' + timer.hours : timer.hours;
             timerMinutes.textContent = timer.minutes < 10 ? '0' + timer.minutes : timer.minutes;
             timerSeconds.textContent = timer.seconds < 10 ? '0' + timer.seconds : timer.seconds;
         };
 
-        const idInterval = setInterval(upDateClock,100);
+        const idInterval = setInterval(upDateClock, 1000);
     };
-    countTimer('11 november 2019');
+    countTimer('12 november 2019');
 });

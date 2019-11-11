@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function() {
             timerSeconds.textContent = timer.seconds < 10 ? '0' + timer.seconds : timer.seconds;
         };
 
-        const idInterval = setInterval(upDateClock,100);
+        const idInterval = setInterval(upDateClock,1000);
     };
     countTimer('11 november 2019');
 });
