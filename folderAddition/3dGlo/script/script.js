@@ -27,7 +27,8 @@ window.addEventListener('DOMContentLoaded', function() {
                 seconds = Math.floor(timeRemaining % 60),
                 minutes = Math.floor((timeRemaining / 60) % 60),
                 hours = Math.floor(timeRemaining / 60 / 60);
-                return {timeRemaining, hours, minutes, seconds};    
+
+            return {timeRemaining, hours, minutes, seconds};      
         };    
 
         const upDateClock = () => {
@@ -35,6 +36,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
             if (timer.timeRemaining <= 0) {
                 clearInterval(idInterval);
+                let deadline = new Date(Date.parse(new Date()) + 86400000);
+                countTimer(deadline);
                 return;
             }
             
@@ -43,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function() {
             timerSeconds.textContent = timer.seconds < 10 ? '0' + timer.seconds : timer.seconds;
         };
 
-        const idInterval = setInterval(upDateClock, 1000);
+        const idInterval = setInterval(upDateClock,1000);
     };
     countTimer('18 november 2019');
 
@@ -54,8 +57,11 @@ window.addEventListener('DOMContentLoaded', function() {
             menu = document.querySelector('menu'),
             closeBtn = document.querySelector('.close-btn'),
             menuItem = menu.querySelectorAll('ul>li'),
+            anchors = document.querySelectorAll('li>a[href*="#"]'),
+            anchor = document.querySelector('main>a[href*="#"]'),
             widthWindow = document.documentElement.clientWidth;
 
+        
         const handlerMenu = () => {
             if (widthWindow <= 768) {
                 if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
@@ -65,14 +71,34 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 menu.classList.toggle('active-menu');
-            } 
+            }  
         };
 
         btmMenu.addEventListener('click', handlerMenu);
         
         closeBtn.addEventListener('click', handlerMenu);
 
-        menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu));     
+        menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu)); 
+
+        const smoothScroll = () => {
+            const blockID = anchor.getAttribute('href').substr(1);
+            document.getElementById(blockID).scrollIntoView({  
+            behavior: 'smooth',
+            block: 'start'
+            });
+        };
+        
+        anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            smoothScroll();
+        });    
+
+        anchors.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                smoothScroll();
+            });
+        });
     };
 
     toggleMenu();
@@ -101,11 +127,10 @@ window.addEventListener('DOMContentLoaded', function() {
         popupBtn.forEach((item) => {
             item.addEventListener('click', () => {
                 setTimeout(animatePopUp);
-
-                if (widthWindow >= 768) {
-                clearInterval(animatePopUp);
+                
+                if (widthWindow <= 768) {
+                    clearInterval(animatePopUp);
                 }
-                console.log(widthWindow);
                 popup.style.display = 'block';
             });
         });   
