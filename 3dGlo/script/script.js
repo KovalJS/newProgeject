@@ -449,8 +449,6 @@ window.addEventListener('DOMContentLoaded', function() {
             });
             
         }); 
-          
-        //const form = document.getElementById('form1'); 
        
         const statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem';
@@ -505,30 +503,5 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
     sendForm();
-/*
-    const valid = () => {
-        const forms = document.querySelectorAll('form'),
-            patternPhone = /^\+?\d+$/;
-
-        forms.forEach((form) => {  
-            for (let elem of form.elements) {
-                let elemId = elem.id.slice(6);
-                elem.addEventListener('input', () => {
-                    if (elemId === 'phone' && !patternPhone.test(elem.value)) {
-                        elem.style.border = 'solid red';
-                    } else if (elemId === 'phone' && patternPhone.test(elem.value)) {
-                        elem.style.border = 'solid grenn';
-                    } else if (elemId === 'name' || elemId === 'message') {
-                        elem.value = elem.value.replace(/[^а-яё\s]/ig, '');
-                    }
-                });   
-            }
-        });
-
-
-    };
-    
-    valid();
-*/
        
 });
