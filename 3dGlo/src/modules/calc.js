@@ -7,8 +7,7 @@ const calc = (price = 100) => {
         totalValue = document.getElementById('total');
 
     const enterNumbers = () => {
-        let numberInput = document.querySelectorAll('input[type="number"]'),
-            calcBlock = document.querySelector('.calc-block');
+        let numberInput = document.querySelectorAll('input[type="number"]');
     
         numberInput.forEach((item) => {
             item.setAttribute('type', 'text');
@@ -58,7 +57,6 @@ const calc = (price = 100) => {
             countSum();
         }
     });
-
 };
 
 export default calc;

@@ -1,12 +1,13 @@
 'use strict';
 
-import 'fetch-polyfill';
-import 'es6-promise';
-import 'formdata-polyfill';
-import "@babel/polyfill";
+import '@babel/polyfill';
 import 'nodelist-foreach-polyfill';
 import elementClosest from 'element-closest';
 elementClosest(window);
+import 'formdata-polyfill';
+import 'es6-promise';
+import 'fetch-polyfill';
+
 
 import countTimer from './modules/countTimer';
 import toggleMenu from './modules/toggleMenu';
@@ -16,7 +17,7 @@ import slider from './modules/slider';
 import mouseHover from './modules/mouseHover';
 import calc from './modules/calc';
 import sendForm from './modules/sendForm';
-
+    
 //Timer
 countTimer('18 january 2020');
 //Menu
@@ -27,8 +28,8 @@ togglePopUp();
 tabs();
 //слайдер
 slider();
-//наша команда 
-mouseHover();
+//Наша команда
+mouseHover();       
 //калькулятор 
 calc(100);
 //send-ajax-form

@@ -6,6 +6,7 @@ const sendForm = () => {
     
     document.querySelectorAll('form').forEach((item) => {
         for (let elem of item.elements) {
+            elem.required = '';
             let elemId = elem.id.slice(6);
             elem.addEventListener('input', () => {
                 if (elemId === 'name' || elemId === 'message') {
@@ -58,7 +59,7 @@ const sendForm = () => {
     applyStyle();    
      
     const statusMessage = document.createElement('div');
-    statusMessage.style.cssText = 'font-size: 2rem';
+    statusMessage.style.cssText = 'font-size: 2rem; color: white';
 
     const sendingForm = () => {
         document.querySelectorAll('form').forEach((forma) => {
@@ -66,14 +67,24 @@ const sendForm = () => {
                 
                 for (let elem of event.target.elements) {
                     let elemId = elem.id.slice(6);
-                        if (elemId === 'phone' && !patternPhone.test(elem.value)) {
-                            event.preventDefault();
-                            showError(elem);
-                            return;
-                        } else if (elemId === 'phone' && patternPhone.test(elem.value)) {
-                            showSuccess(elem);
-                        }
-                    }
+                    console.log();
+                    if (elemId === 'phone' && !patternPhone.test(elem.value)) {
+                        event.preventDefault();
+                        showError(elem);
+                        return;   
+                    } else if (elemId === 'phone' && patternPhone.test(elem.value)) {
+                        showSuccess(elem);
+                    } if (elemId === 'name' && elem.value.trim() === '') {
+                        event.preventDefault();
+                        return;
+                    } else if (elemId === 'email' && elem.value.trim() === '') {
+                        event.preventDefault();
+                        return;
+                    } else if (elemId === 'message' && elem.value.trim() === '') {
+                        event.preventDefault();
+                        return;
+                    } 
+                }
             
                 event.preventDefault();
                 forma.appendChild(statusMessage);
@@ -87,7 +98,6 @@ const sendForm = () => {
                
                 postData(body)
                     .then ((response) => {
-                        console.log(response);
                         if (response.status !== 200) {
                             throw new Error('status network not 200');
                         }
