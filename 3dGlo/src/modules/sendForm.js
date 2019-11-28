@@ -2,7 +2,7 @@ const sendForm = () => {
     const errorMessage = 'Что-то пошло не так...',
         loadMessage = 'Загрузка...',
         successMessage = 'Спасибо! Мы скоро с вами свяжемся!',
-        patternPhone = /^\+?\d+$/;
+        patternPhone = /^\+?(\d){10}$/;
     
     document.querySelectorAll('form').forEach((item) => {
         for (let elem of item.elements) {

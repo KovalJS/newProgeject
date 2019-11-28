@@ -18,7 +18,7 @@ import calc from './modules/calc';
 import sendForm from './modules/sendForm';
 
 //Timer
-countTimer('18 january 2020');
+countTimer('18 december 2019');
 //Menu
 toggleMenu();
 //popup
